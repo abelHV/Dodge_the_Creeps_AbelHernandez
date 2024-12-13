@@ -5,24 +5,25 @@ var score
 
 func _ready():
 	randomize()
-
+	
 
 
 
 func game_over():
-	$ScoreTimer.stop()
-	$MobTimer.stop()
+	$scoreTimer.stop()
+	$mobTimer.stop()
+	
 func new_game():
 	score = 0
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
+	$player.start($startPosition.position)
+	$startTimer.start()
 
 
 func _on_mobTimer_timeout():
 	# Crea una nova instància de l'escena Mob.
 	var mob = mob_scene.instance()
 	# Trieu una ubicació aleatòria a Path2D.
-	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
+	var mob_spawn_location = get_node("mobPath/mobSpawnLocation")
 	mob_spawn_location.offset = randi()
 	# Estableix la direcció de la multitud perpendicular a la direcció del camí.
 	var direction = mob_spawn_location.rotation + PI / 2
@@ -43,5 +44,5 @@ func _on_scoreTimer_timeout():
 
 
 func _on_startTimer_timeout():
-	$MobTimer.start()
-	$ScoreTimer.start()
+	$mobTimer.start()
+	$scoreTimer.start()
